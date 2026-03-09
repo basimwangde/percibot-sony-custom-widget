@@ -2,9 +2,9 @@
     "eula": "",
     "license": "",
     "vendor": "Percipere Consulting",
-    "id": "com.percipere.sac.percibot",
+    "id": "com.percipere.sac.percibot.sony",
     "version": "1.1.0",
-    "name": "PerciBOT",
+    "name": "PerciBOT - Sony",
     "newInstancePrefix": "PerciBOT",
     "description": "Conversational AI assistant for SAP Analytics Cloud",
 
@@ -12,14 +12,14 @@
       {
         "kind": "main",
         "tag": "perci-bot",
-        "url": "https://basimwangde.github.io/OPENAI-SAC-CUSTOM-WIDGET/src/chat-widget.js",
+        "url": "https://basimwangde.github.io/percibot-sony-custom-widget/src/chat-widget.js",
         "integrity": "",
         "ignoreIntegrity": true
       },
       {
         "kind": "builder",
         "tag": "perci-bot-builder",
-        "url": "https://basimwangde.github.io/OPENAI-SAC-CUSTOM-WIDGET/src/builder.js",
+        "url": "https://basimwangde.github.io/percibot-sony-custom-widget/src/builder.js",
         "integrity": "",
         "ignoreIntegrity": true
       }
@@ -35,7 +35,8 @@
       "accentColor":  { "type": "string",  "default": "#3cc0ff" },
       "surfaceColor": { "type": "string",  "default": "#ffffff" },
       "surfaceAlt":   { "type": "string",  "default": "#f6f8ff" },
-      "textColor":    { "type": "string",  "default": "#0b1221" }
+      "textColor":    { "type": "string",  "default": "#0b1221" },
+      "summaryPrompt": { "type": "string", "default": "" }
     },
 
     "methods": {

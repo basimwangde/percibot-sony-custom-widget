@@ -95,7 +95,7 @@
       </div>
     `
 
-    const BACKEND_URL = 'https://percibot.cfapps.in30.hana.ondemand.com/ask_finance'
+    const BACKEND_URL = 'https://percibot.cfapps.in30.hana.ondemand.com/ask'
 
     class PerciBot extends HTMLElement {
       constructor () {
@@ -178,10 +178,12 @@
         this.$send.disabled = true
 
         try {
+          const sessionId = this._sessionId || this._buildSessionId()
+          this._sessionId = sessionId
           const res = await fetch(BACKEND_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ query: q })
+            body: JSON.stringify({ query: q, session: sessionId })
           })
 
           if (!res.ok) {
@@ -359,10 +361,12 @@
         this.$send.disabled = true
 
         try {
+          const sessionId = this._sessionId || this._buildSessionId()
+          this._sessionId = sessionId
           const res = await fetch(BACKEND_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ query: q })
+            body: JSON.stringify({ query: q, session: sessionId })
           })
 
           if (!res.ok) {
@@ -380,6 +384,15 @@
         } finally {
           this.$send.disabled = false
         }
+      }
+
+      _buildSessionId () {
+        const d = new Date()
+        const pad = n => String(n).padStart(2, '0')
+        const y = d.getFullYear()
+        const m = pad(d.getMonth() + 1)
+        const day = pad(d.getDate())
+        return `PerciBOT_${y}${m}${day}`
       }
     }
 
