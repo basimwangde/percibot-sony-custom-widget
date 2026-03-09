@@ -42,7 +42,7 @@
         }
         .user{ margin-left:auto; }
         .suggestions{
-          margin:8px 0;
+          margin:6px 10px 4px;
           display:flex;
           flex-direction:column;
           gap:6px;
@@ -121,16 +121,16 @@
         </header>
 
         <div class="body">
-          <div class="panel" id="chat">
-            <div class="suggestions" id="suggestions">
-              <div class="suggest-title">Try asking…</div>
-              <div class="suggest-chip-row">
-                <button class="suggest-chip" data-q="What was the Monthly Active Users (MAU) for the current month?">What was the Monthly Active Users (MAU) for the current month?</button>
-                <button class="suggest-chip" data-q="How has MAU trended over the past 6 months?">How has MAU trended over the past 6 months?</button>
-                <button class="suggest-chip" data-q="SVOD MAU and AVOD MAU compare over the past 6 months?">SVOD MAU and AVOD MAU compare over the past 6 months?</button>
-                <button class="suggest-chip" data-q="What are the Top 5 shows based on MAV?">What are the Top 5 shows based on MAV?</button>
-                <button class="suggest-chip" data-q="Show MAV performance by content category for the last month">Show MAV performance by content category for the last month</button>
-              </div>
+          <div class="panel" id="chat"></div>
+
+          <div class="suggestions" id="suggestions">
+            <div class="suggest-title">Try asking…</div>
+            <div class="suggest-chip-row">
+              <button class="suggest-chip" data-q="What was the Monthly Active Users (MAU) for the current month?">What was the Monthly Active Users (MAU) for the current month?</button>
+              <button class="suggest-chip" data-q="How has MAU trended over the past 6 months?">How has MAU trended over the past 6 months?</button>
+              <button class="suggest-chip" data-q="SVOD MAU and AVOD MAU compare over the past 6 months?">SVOD MAU and AVOD MAU compare over the past 6 months?</button>
+              <button class="suggest-chip" data-q="What are the Top 5 shows based on MAV?">What are the Top 5 shows based on MAV?</button>
+              <button class="suggest-chip" data-q="Show MAV performance by content category for the last month">Show MAV performance by content category for the last month</button>
             </div>
           </div>
 
