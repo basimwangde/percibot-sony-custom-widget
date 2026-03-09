@@ -42,18 +42,14 @@
         }
         .user{ margin-left:auto; }
         .suggestions{
-          margin:8px 0 4px;
-          padding:8px 10px;
-          border-radius:10px;
-          border:1px solid #e7eaf0;
-          background:#f9fafc;
+          margin:8px 0;
           display:flex;
           flex-direction:column;
-          gap:6px;
+          gap:4px;
         }
         .suggest-chip-row{
           display:flex;
-          flex-direction:column;
+          flex-wrap:wrap;
           gap:6px;
         }
         .suggest-chip{
@@ -64,7 +60,6 @@
           background:#ffffff;
           cursor:pointer;
           max-width:100%;
-          width:100%;
           text-align:left;
           white-space:normal;
         }
@@ -120,7 +115,7 @@
         <div class="body">
           <div class="panel" id="chat"></div>
 
-          <div class="suggestions">
+          <div class="suggestions" id="suggestions">
             <div class="muted">Try asking…</div>
             <div class="suggest-chip-row">
               <button class="suggest-chip" data-q="What was the Monthly Active Users (MAU) for the current month?">What was the Monthly Active Users (MAU) for the current month?</button>
@@ -162,6 +157,7 @@
         this.$clear = this.$('clear')
         this.$modelChip = this.$('modelChip')
         this.$hint = this.$('hint')
+        this.$suggestions = this.$('suggestions')
 
         this.$send.addEventListener('click', () => this._send())
         this.$clear.addEventListener('click', () => (this.$chat.innerHTML = ''))
@@ -177,6 +173,7 @@
             if (!q) return
             this.$input.value = q
             this._send()
+            if (this.$suggestions) this.$suggestions.style.display = 'none'
           })
         })
 
@@ -420,6 +417,7 @@
       async _send () {
         const q = (this.$input.value || '').trim()
         if (!q) return
+        if (this.$suggestions) this.$suggestions.style.display = 'none'
         this._append('user', q)
         this.$input.value = ''
 
