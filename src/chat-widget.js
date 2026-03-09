@@ -18,6 +18,7 @@
           gap:10px;
           padding:10px;
           min-height:0;
+          position:relative; /* anchor overlays like sample panel */
         }
         .panel{
           flex:1;
@@ -73,6 +74,88 @@
         }
         .suggest-chip:hover{
           background:linear-gradient(180deg,#f9fbff,#eef4ff);
+          border-color:#4d9aff;
+        }
+        .sample-toggle-row{
+          display:flex;
+          justify-content:flex-start;
+          padding:0 2px;
+        }
+        .sample-toggle{
+          border:none;
+          background:transparent;
+          color:#1f4fbf;
+          font-size:12px;
+          font-weight:600;
+          cursor:pointer;
+          padding:0;
+          display:inline-flex;
+          align-items:center;
+          gap:4px;
+        }
+        .sample-toggle::before{
+          content:'❓';
+          font-size:12px;
+        }
+        .sample-toggle:hover{
+          text-decoration:underline;
+        }
+        .sample-panel{
+          position:absolute;
+          top:24px;
+          left:16px;
+          right:16px;
+          bottom:80px;
+          background:#ffffff;
+          border-radius:12px;
+          box-shadow:0 18px 45px rgba(15,23,42,.22);
+          border:1px solid #e2e8f0;
+          padding:14px 16px;
+          overflow:auto;
+          z-index:5;
+          display:none;
+        }
+        .sample-panel-header{
+          display:flex;
+          justify-content:space-between;
+          align-items:center;
+          margin-bottom:10px;
+        }
+        .sample-panel-title{
+          font-size:13px;
+          font-weight:700;
+        }
+        .sample-panel-close{
+          border:none;
+          background:transparent;
+          cursor:pointer;
+          font-size:18px;
+          line-height:1;
+        }
+        .sample-section{
+          margin-bottom:10px;
+        }
+        .sample-section-title{
+          font-size:12px;
+          font-weight:600;
+          margin-bottom:4px;
+        }
+        .sample-q-list{
+          display:flex;
+          flex-direction:column;
+          gap:4px;
+        }
+        .sample-q{
+          text-align:left;
+          font-size:12px;
+          padding:6px 8px;
+          border-radius:8px;
+          border:1px solid #e2e8f0;
+          background:#f8fafc;
+          cursor:pointer;
+        }
+        .sample-q:hover{
+          background:#edf2ff;
           border-color:#4d9aff;
         }
         .inputRow{ display:flex; gap:8px; align-items:flex-start }
@@ -134,6 +217,156 @@
             </div>
           </div>
 
+          <div class="sample-toggle-row">
+            <button id="sampleToggle" class="sample-toggle">Sample questions</button>
+          </div>
+
+          <div class="sample-panel" id="samplePanel">
+            <div class="sample-panel-header">
+              <div class="sample-panel-title">Sample questions library</div>
+              <button class="sample-panel-close" id="sampleClose" aria-label="Close sample questions">×</button>
+            </div>
+            <div class="sample-section">
+              <div class="sample-section-title">1. Platform User Engagement</div>
+              <div class="sample-q-list">
+                <button class="sample-q" data-q="What was the Monthly Active Users (MAU) for the last month?">What was the Monthly Active Users (MAU) for the last month?</button>
+                <button class="sample-q" data-q="How has MAU trended over the past 6 months?">How has MAU trended over the past 6 months?</button>
+                <button class="sample-q" data-q="What is the SVOD MAU for the last month?">What is the SVOD MAU for the last month?</button>
+                <button class="sample-q" data-q="What is the AVOD MAU for the last month?">What is the AVOD MAU for the last month?</button>
+                <button class="sample-q" data-q="How do SVOD MAU and AVOD MAU compare over the past 6 months?">How do SVOD MAU and AVOD MAU compare over the past 6 months?</button>
+                <button class="sample-q" data-q="Which month recorded the highest MAU in the dataset?">Which month recorded the highest MAU in the dataset?</button>
+                <button class="sample-q" data-q="What is the Daily Active Users (DAU) for the most recent month?">What is the Daily Active Users (DAU) for the most recent month?</button>
+                <button class="sample-q" data-q="How does DAU compare between SVOD and AVOD users?">How does DAU compare between SVOD and AVOD users?</button>
+                <button class="sample-q" data-q="What is the average number of active days per MAU (Avg. MAU Days)?">What is the average number of active days per MAU (Avg. MAU Days)?</button>
+                <button class="sample-q" data-q="Which month had the highest average MAU days?">Which month had the highest average MAU days?</button>
+              </div>
+            </div>
+
+            <div class="sample-section">
+              <div class="sample-section-title">2. Viewer Engagement</div>
+              <div class="sample-q-list">
+                <button class="sample-q" data-q="What was the Monthly Active Viewers (MAV) last month?">What was the Monthly Active Viewers (MAV) last month?</button>
+                <button class="sample-q" data-q="How has MAV trended over the past 6 months?">How has MAV trended over the past 6 months?</button>
+                <button class="sample-q" data-q="What is the SVOD MAV for the last month?">What is the SVOD MAV for the last month?</button>
+                <button class="sample-q" data-q="What is the AVOD MAV for the last month?">What is the AVOD MAV for the last month?</button>
+                <button class="sample-q" data-q="How do SVOD MAV and AVOD MAV compare month-over-month?">How do SVOD MAV and AVOD MAV compare month-over-month?</button>
+                <button class="sample-q" data-q="What is the average daily active viewers (DAV) for the current month?">What is the average daily active viewers (DAV) for the current month?</button>
+                <button class="sample-q" data-q="Compare SVOD DAV and AVOD DAV for the past 3 months.">Compare SVOD DAV and AVOD DAV for the past 3 months.</button>
+                <button class="sample-q" data-q="What is the average number of active days per viewer (Avg. MAV Days)?">What is the average number of active days per viewer (Avg. MAV Days)?</button>
+                <button class="sample-q" data-q="Which month recorded the highest MAV?">Which month recorded the highest MAV?</button>
+              </div>
+            </div>
+
+            <div class="sample-section">
+              <div class="sample-section-title">3. User to Viewer Conversion</div>
+              <div class="sample-q-list">
+                <button class="sample-q" data-q="What is the monthly user-to-viewer conversion rate?">What is the monthly user-to-viewer conversion rate?</button>
+                <button class="sample-q" data-q="How has user-to-viewer conversion changed over the last 6 months?">How has user-to-viewer conversion changed over the last 6 months?</button>
+                <button class="sample-q" data-q="What is the daily user-to-viewer conversion rate?">What is the daily user-to-viewer conversion rate?</button>
+                <button class="sample-q" data-q="Which month had the highest user-to-viewer conversion?">Which month had the highest user-to-viewer conversion?</button>
+                <button class="sample-q" data-q="How does conversion vary month-over-month?">How does conversion vary month-over-month?</button>
+              </div>
+            </div>
+
+            <div class="sample-section">
+              <div class="sample-section-title">4. Video Consumption</div>
+              <div class="sample-q-list">
+                <button class="sample-q" data-q="What were the total video views last month?">What were the total video views last month?</button>
+                <button class="sample-q" data-q="What were the SVOD video views last month?">What were the SVOD video views last month?</button>
+                <button class="sample-q" data-q="What were the AVOD video views last month?">What were the AVOD video views last month?</button>
+                <button class="sample-q" data-q="How have video views trended over the past 6 months?">How have video views trended over the past 6 months?</button>
+                <button class="sample-q" data-q="Which month recorded the highest number of video views?">Which month recorded the highest number of video views?</button>
+                <button class="sample-q" data-q="How do SVOD video views compare with AVOD video views over time?">How do SVOD video views compare with AVOD video views over time?</button>
+              </div>
+            </div>
+
+            <div class="sample-section">
+              <div class="sample-section-title">5. Watch Time Analytics</div>
+              <div class="sample-q-list">
+                <button class="sample-q" data-q="What was the total watch time last month?">What was the total watch time last month?</button>
+                <button class="sample-q" data-q="What was the SVOD total watch time last month?">What was the SVOD total watch time last month?</button>
+                <button class="sample-q" data-q="What was the AVOD total watch time last month?">What was the AVOD total watch time last month?</button>
+                <button class="sample-q" data-q="How has watch time trended over the last 6 months?">How has watch time trended over the last 6 months?</button>
+                <button class="sample-q" data-q="What is the average watch time per viewer (WT/Viewer)?">What is the average watch time per viewer (WT/Viewer)?</button>
+                <button class="sample-q" data-q="How does WT/Viewer compare between SVOD and AVOD viewers?">How does WT/Viewer compare between SVOD and AVOD viewers?</button>
+                <button class="sample-q" data-q="Which month recorded the highest watch time per viewer?">Which month recorded the highest watch time per viewer?</button>
+              </div>
+            </div>
+
+            <div class="sample-section">
+              <div class="sample-section-title">6. Monetization Metrics</div>
+              <div class="sample-q-list">
+                <button class="sample-q" data-q="What were the total monetizable views last month?">What were the total monetizable views last month?</button>
+                <button class="sample-q" data-q="What were the SVOD monetizable views last month?">What were the SVOD monetizable views last month?</button>
+                <button class="sample-q" data-q="What were the AVOD monetizable views last month?">What were the AVOD monetizable views last month?</button>
+                <button class="sample-q" data-q="How have monetizable views changed over time?">How have monetizable views changed over time?</button>
+                <button class="sample-q" data-q="Which month recorded the highest monetizable views?">Which month recorded the highest monetizable views?</button>
+              </div>
+            </div>
+
+            <div class="sample-section">
+              <div class="sample-section-title">7. Viewer Cohort Analysis</div>
+              <div class="sample-q-list">
+                <button class="sample-q" data-q="Show the distribution of viewers by active days cohort.">Show the distribution of viewers by active days cohort.</button>
+                <button class="sample-q" data-q="How many viewers fall into low, medium, and high activity cohorts?">How many viewers fall into low, medium, and high activity cohorts?</button>
+                <button class="sample-q" data-q="Which cohort contributes the largest share of viewers?">Which cohort contributes the largest share of viewers?</button>
+              </div>
+            </div>
+
+            <div class="sample-section">
+              <div class="sample-section-title">8. Content Performance</div>
+              <div class="sample-q-list">
+                <button class="sample-q" data-q="What are the Top 5 shows based on MAU?">What are the Top 5 shows based on MAU?</button>
+                <button class="sample-q" data-q="What are the Top 5 shows based on MAV?">What are the Top 5 shows based on MAV?</button>
+                <button class="sample-q" data-q="What are the Top 5 shows based on video views?">What are the Top 5 shows based on video views?</button>
+                <button class="sample-q" data-q="What are the Top 5 shows based on watch time?">What are the Top 5 shows based on watch time?</button>
+                <button class="sample-q" data-q="What are the Top 5 shows based on watch time per viewer?">What are the Top 5 shows based on watch time per viewer?</button>
+                <button class="sample-q" data-q="Show the Top 5 SVOD shows based on watch time.">Show the Top 5 SVOD shows based on watch time.</button>
+                <button class="sample-q" data-q="Show the Top 5 AVOD shows based on video views.">Show the Top 5 AVOD shows based on video views.</button>
+              </div>
+            </div>
+
+            <div class="sample-section">
+              <div class="sample-section-title">9. Category Performance</div>
+              <div class="sample-q-list">
+                <button class="sample-q" data-q="Show MAV performance by content category for the last month.">Show MAV performance by content category for the last month.</button>
+                <button class="sample-q" data-q="Compare viewership across content categories (LIV, Sports, SAB, SET, Others).">Compare viewership across content categories (LIV, Sports, SAB, SET, Others).</button>
+                <button class="sample-q" data-q="Which content category recorded the highest MAV last month?">Which content category recorded the highest MAV last month?</button>
+                <button class="sample-q" data-q="How has category-wise MAV changed over time?">How has category-wise MAV changed over time?</button>
+              </div>
+            </div>
+
+            <div class="sample-section">
+              <div class="sample-section-title">10. Content Age Analysis</div>
+              <div class="sample-q-list">
+                <button class="sample-q" data-q="How many video views came from new content versus old content?">How many video views came from new content versus old content?</button>
+                <button class="sample-q" data-q="Show video views for content released within the last 90 days.">Show video views for content released within the last 90 days.</button>
+                <button class="sample-q" data-q="Show video views for content released within the last 45 days.">Show video views for content released within the last 45 days.</button>
+                <button class="sample-q" data-q="Show video views for content released within the last 15 days.">Show video views for content released within the last 15 days.</button>
+                <button class="sample-q" data-q="Compare views between new content and older content.">Compare views between new content and older content.</button>
+              </div>
+            </div>
+
+            <div class="sample-section">
+              <div class="sample-section-title">11. Trailer Performance</div>
+              <div class="sample-q-list">
+                <button class="sample-q" data-q="Which trailers generated the highest video views last month?">Which trailers generated the highest video views last month?</button>
+                <button class="sample-q" data-q="Show the Top 5 trailers based on video views.">Show the Top 5 trailers based on video views.</button>
+              </div>
+            </div>
+
+            <div class="sample-section">
+              <div class="sample-section-title">12. Advanced Analytical Questions</div>
+              <div class="sample-q-list">
+                <button class="sample-q" data-q="Which shows have high MAU but relatively low watch time per viewer?">Which shows have high MAU but relatively low watch time per viewer?</button>
+                <button class="sample-q" data-q="Which content categories generate high MAV but comparatively lower watch time?">Which content categories generate high MAV but comparatively lower watch time?</button>
+                <button class="sample-q" data-q="Which month shows growth across MAU, MAV, video views, and watch time?">Which month shows growth across MAU, MAV, video views, and watch time?</button>
+                <button class="sample-q" data-q="Which shows drive the highest engagement per viewer?">Which shows drive the highest engagement per viewer?</button>
+                <button class="sample-q" data-q="Which segment (SVOD or AVOD) shows stronger watch time per viewer trends?">Which segment (SVOD or AVOD) shows stronger watch time per viewer trends?</button>
+              </div>
+            </div>
+          </div>
+
           <div class="inputRow">
             <textarea id="input" placeholder="Ask anything about your analytics…"></textarea>
             <div style="display:flex; flex-direction:column; gap:8px;">
@@ -166,6 +399,9 @@
         this.$modelChip = this.$('modelChip')
         this.$hint = this.$('hint')
         this.$suggestions = this.$('suggestions')
+        this.$sampleToggle = this.$('sampleToggle')
+        this.$samplePanel = this.$('samplePanel')
+        this.$sampleClose = this.$('sampleClose')
 
         this.$send.addEventListener('click', () => this._send())
         this.$clear.addEventListener('click', () => {
@@ -181,6 +417,7 @@
         })
 
         this._wireSuggestionChips()
+        this._wireSamplePanel()
 
         this._props = {
           welcomeText: "Hello, I'm PerciBOT! How can I assist you?",
@@ -248,6 +485,30 @@
             this.$input.value = q
             this._send()
             if (this.$suggestions) this.$suggestions.style.display = 'none'
+          })
+        })
+      }
+
+      _wireSamplePanel () {
+        if (this.$sampleToggle && this.$samplePanel) {
+          this.$sampleToggle.addEventListener('click', () => {
+            const isOpen = this.$samplePanel.style.display === 'block'
+            this.$samplePanel.style.display = isOpen ? 'none' : 'block'
+          })
+        }
+        if (this.$sampleClose && this.$samplePanel) {
+          this.$sampleClose.addEventListener('click', () => {
+            this.$samplePanel.style.display = 'none'
+          })
+        }
+        const qs = this._shadowRoot.querySelectorAll('.sample-q')
+        qs.forEach(btn => {
+          btn.addEventListener('click', () => {
+            const q = btn.getAttribute('data-q') || btn.textContent || ''
+            if (!q) return
+            this.$input.value = q
+            this._send()
+            if (this.$samplePanel) this.$samplePanel.style.display = 'none'
           })
         })
       }
