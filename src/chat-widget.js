@@ -28,8 +28,18 @@
           padding:10px;
           background:#f7f9fc;
           position:relative;
+          user-select:text;
+          -webkit-user-select:text;
         }
-        .msg{max-width:85%; margin:6px 0; padding:10px 12px; border-radius:14px; box-shadow:0 1px 2px rgba(0,0,0,.04)}
+        .msg{
+          max-width:85%;
+          margin:6px 0;
+          padding:10px 12px;
+          border-radius:14px;
+          box-shadow:0 1px 2px rgba(0,0,0,.04);
+          user-select:text;
+          -webkit-user-select:text;
+        }
         .user{ margin-left:auto; }
         .inputRow{ display:flex; gap:8px; align-items:flex-start }
         textarea{
@@ -113,6 +123,12 @@
 
         this.$send.addEventListener('click', () => this._send())
         this.$clear.addEventListener('click', () => (this.$chat.innerHTML = ''))
+        this.$input.addEventListener('keydown', e => {
+          if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault()
+            this._send()
+          }
+        })
 
         this._props = {
           welcomeText: "Hello, I'm PerciBOT! How can I assist you?",
