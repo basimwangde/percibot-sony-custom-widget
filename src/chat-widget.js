@@ -45,26 +45,34 @@
           margin:8px 0;
           display:flex;
           flex-direction:column;
-          gap:4px;
+          gap:6px;
+        }
+        .suggest-title{
+          font-size:12px;
+          font-weight:600;
+          letter-spacing:.06em;
+          text-transform:uppercase;
+          opacity:.65;
         }
         .suggest-chip-row{
           display:flex;
           flex-wrap:wrap;
-          gap:6px;
+          gap:8px;
         }
         .suggest-chip{
           font-size:12px;
-          padding:6px 10px;
+          padding:6px 12px;
           border-radius:999px;
           border:1px solid #d0d3da;
-          background:#ffffff;
+          background:linear-gradient(180deg,#ffffff,#f7f9ff);
           cursor:pointer;
           max-width:100%;
           text-align:left;
           white-space:normal;
+          box-shadow:0 1px 2px rgba(15,23,42,.06);
         }
         .suggest-chip:hover{
-          background:#eef4ff;
+          background:linear-gradient(180deg,#f9fbff,#eef4ff);
           border-color:#4d9aff;
         }
         .inputRow{ display:flex; gap:8px; align-items:flex-start }
@@ -115,7 +123,7 @@
         <div class="body">
           <div class="panel" id="chat">
             <div class="suggestions" id="suggestions">
-              <div class="muted">Try asking…</div>
+              <div class="suggest-title">Try asking…</div>
               <div class="suggest-chip-row">
                 <button class="suggest-chip" data-q="What was the Monthly Active Users (MAU) for the current month?">What was the Monthly Active Users (MAU) for the current month?</button>
                 <button class="suggest-chip" data-q="How has MAU trended over the past 6 months?">How has MAU trended over the past 6 months?</button>
@@ -171,15 +179,8 @@
             this._send()
           }
         })
-        this._shadowRoot.querySelectorAll('.suggest-chip').forEach(btn => {
-          btn.addEventListener('click', () => {
-            const q = btn.getAttribute('data-q') || btn.textContent || ''
-            if (!q) return
-            this.$input.value = q
-            this._send()
-            if (this.$suggestions) this.$suggestions.style.display = 'none'
-          })
-        })
+
+        this._wireSuggestionChips()
 
         this._props = {
           welcomeText: "Hello, I'm PerciBOT! How can I assist you?",
@@ -190,11 +191,13 @@
           textColor: '#0b1221',
         }
         this.summaryResponse = ''
+        this._welcomeShown = false
       }
 
       connectedCallback () {
-        if (!this.$chat.innerHTML && this._props.welcomeText) {
+        if (!this._welcomeShown && this._props.welcomeText) {
           this._append('bot', this._props.welcomeText)
+          this._welcomeShown = true
         }
       }
 
@@ -207,8 +210,9 @@
           return
         }
 
-        if (!this.$chat.innerHTML && this._props.welcomeText) {
+        if (!this._welcomeShown && this._props.welcomeText) {
           this._append('bot', this._props.welcomeText)
+          this._welcomeShown = true
         }
       }
 
@@ -233,6 +237,19 @@
         if (methodName === 'getLastSummary') {
           return this.summaryResponse || ''
         }
+      }
+
+      _wireSuggestionChips () {
+        const chips = this._shadowRoot.querySelectorAll('.suggest-chip')
+        chips.forEach(btn => {
+          btn.addEventListener('click', () => {
+            const q = btn.getAttribute('data-q') || btn.textContent || ''
+            if (!q) return
+            this.$input.value = q
+            this._send()
+            if (this.$suggestions) this.$suggestions.style.display = 'none'
+          })
+        })
       }
 
       async _generateSummary (prompt) {
