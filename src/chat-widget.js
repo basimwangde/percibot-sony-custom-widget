@@ -42,14 +42,18 @@
         }
         .user{ margin-left:auto; }
         .suggestions{
-          margin:6px 0 2px;
+          margin:8px 0 4px;
+          padding:8px 10px;
+          border-radius:10px;
+          border:1px solid #e7eaf0;
+          background:#f9fafc;
           display:flex;
           flex-direction:column;
-          gap:4px;
+          gap:6px;
         }
         .suggest-chip-row{
           display:flex;
-          flex-wrap:wrap;
+          flex-direction:column;
           gap:6px;
         }
         .suggest-chip{
@@ -60,6 +64,7 @@
           background:#ffffff;
           cursor:pointer;
           max-width:100%;
+          width:100%;
           text-align:left;
           white-space:normal;
         }
