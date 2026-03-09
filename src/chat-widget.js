@@ -41,6 +41,32 @@
           -webkit-user-select:text;
         }
         .user{ margin-left:auto; }
+        .suggestions{
+          margin:6px 0 2px;
+          display:flex;
+          flex-direction:column;
+          gap:4px;
+        }
+        .suggest-chip-row{
+          display:flex;
+          flex-wrap:wrap;
+          gap:6px;
+        }
+        .suggest-chip{
+          font-size:12px;
+          padding:6px 10px;
+          border-radius:999px;
+          border:1px solid #d0d3da;
+          background:#ffffff;
+          cursor:pointer;
+          max-width:100%;
+          text-align:left;
+          white-space:normal;
+        }
+        .suggest-chip:hover{
+          background:#eef4ff;
+          border-color:#4d9aff;
+        }
         .inputRow{ display:flex; gap:8px; align-items:flex-start }
         textarea{
           flex:1; resize:vertical; min-height:64px; max-height:220px;
@@ -89,6 +115,17 @@
         <div class="body">
           <div class="panel" id="chat"></div>
 
+          <div class="suggestions">
+            <div class="muted">Try asking…</div>
+            <div class="suggest-chip-row">
+              <button class="suggest-chip" data-q="What was the Monthly Active Users (MAU) for the current month?">What was the Monthly Active Users (MAU) for the current month?</button>
+              <button class="suggest-chip" data-q="How has MAU trended over the past 6 months?">How has MAU trended over the past 6 months?</button>
+              <button class="suggest-chip" data-q="SVOD MAU and AVOD MAU compare over the past 6 months?">SVOD MAU and AVOD MAU compare over the past 6 months?</button>
+              <button class="suggest-chip" data-q="What are the Top 5 shows based on MAV?">What are the Top 5 shows based on MAV?</button>
+              <button class="suggest-chip" data-q="Show MAV performance by content category for the last month">Show MAV performance by content category for the last month</button>
+            </div>
+          </div>
+
           <div class="inputRow">
             <textarea id="input" placeholder="Ask anything about your analytics…"></textarea>
             <div style="display:flex; flex-direction:column; gap:8px;">
@@ -128,6 +165,14 @@
             e.preventDefault()
             this._send()
           }
+        })
+        this._shadowRoot.querySelectorAll('.suggest-chip').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const q = btn.getAttribute('data-q') || btn.textContent || ''
+            if (!q) return
+            this.$input.value = q
+            this._send()
+          })
         })
 
         this._props = {
