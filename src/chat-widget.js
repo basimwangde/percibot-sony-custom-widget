@@ -113,16 +113,16 @@
         </header>
 
         <div class="body">
-          <div class="panel" id="chat"></div>
-
-          <div class="suggestions" id="suggestions">
-            <div class="muted">Try asking…</div>
-            <div class="suggest-chip-row">
-              <button class="suggest-chip" data-q="What was the Monthly Active Users (MAU) for the current month?">What was the Monthly Active Users (MAU) for the current month?</button>
-              <button class="suggest-chip" data-q="How has MAU trended over the past 6 months?">How has MAU trended over the past 6 months?</button>
-              <button class="suggest-chip" data-q="SVOD MAU and AVOD MAU compare over the past 6 months?">SVOD MAU and AVOD MAU compare over the past 6 months?</button>
-              <button class="suggest-chip" data-q="What are the Top 5 shows based on MAV?">What are the Top 5 shows based on MAV?</button>
-              <button class="suggest-chip" data-q="Show MAV performance by content category for the last month">Show MAV performance by content category for the last month</button>
+          <div class="panel" id="chat">
+            <div class="suggestions" id="suggestions">
+              <div class="muted">Try asking…</div>
+              <div class="suggest-chip-row">
+                <button class="suggest-chip" data-q="What was the Monthly Active Users (MAU) for the current month?">What was the Monthly Active Users (MAU) for the current month?</button>
+                <button class="suggest-chip" data-q="How has MAU trended over the past 6 months?">How has MAU trended over the past 6 months?</button>
+                <button class="suggest-chip" data-q="SVOD MAU and AVOD MAU compare over the past 6 months?">SVOD MAU and AVOD MAU compare over the past 6 months?</button>
+                <button class="suggest-chip" data-q="What are the Top 5 shows based on MAV?">What are the Top 5 shows based on MAV?</button>
+                <button class="suggest-chip" data-q="Show MAV performance by content category for the last month">Show MAV performance by content category for the last month</button>
+              </div>
             </div>
           </div>
 
@@ -160,7 +160,11 @@
         this.$suggestions = this.$('suggestions')
 
         this.$send.addEventListener('click', () => this._send())
-        this.$clear.addEventListener('click', () => (this.$chat.innerHTML = ''))
+        this.$clear.addEventListener('click', () => {
+          // remove only message bubbles, keep suggestion block
+          Array.from(this.$chat.querySelectorAll('.msg')).forEach(el => el.remove())
+          if (this.$suggestions) this.$suggestions.style.display = ''
+        })
         this.$input.addEventListener('keydown', e => {
           if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault()
