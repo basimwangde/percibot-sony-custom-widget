@@ -80,6 +80,10 @@
           flex:1; resize:vertical; min-height:64px; max-height:220px;
           padding:10px 12px; border:1px solid #d0d3da; border-radius:12px; background:#fff; outline:none;
         }
+        textarea::placeholder{
+          font-style:italic;
+          color:#9ca3af;
+        }
         textarea:focus{ border-color:#4d9aff; box-shadow:0 0 0 2px rgba(77,154,255,.15) }
         button{
           padding:10px 14px; border:1px solid #d0d3da; border-radius:12px; background:#fff; cursor:pointer
@@ -129,7 +133,7 @@
           </div>
 
           <div class="inputRow">
-            <textarea id="input" placeholder="Ask anything about your analytics…"></textarea>
+            <textarea id="input" placeholder="Ask about MAU, MAV, video views, watch time, etc…"></textarea>
             <div style="display:flex; flex-direction:column; gap:8px;">
               <button class="primary" id="send">Send</button>
               <button id="clear">Clear</button>
