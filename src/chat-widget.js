@@ -193,9 +193,9 @@
       'What were the AVOD monetizable views last month?',
       'How have monetizable views changed over time?',
       'Which month recorded the highest monetizable views?',
-      'Show the distribution of viewers by active days cohort.',
-      'How many viewers fall into low, medium, and high activity cohorts?',
-      'Which cohort contributes the largest share of viewers?',
+      // 'Show the distribution of viewers by active days cohort.',
+      // 'How many viewers fall into low, medium, and high activity cohorts?',
+      // 'Which cohort contributes the largest share of viewers?',
       'What are the Top 5 shows based on MAU?',
       'What are the Top 5 shows based on MAV?',
       'What are the Top 5 shows based on video views?',
@@ -207,18 +207,18 @@
       'Compare viewership across content categories (LIV, Sports, SAB, SET, Others).',
       'Which content category recorded the highest MAV last month?',
       'How has category-wise MAV changed over time?',
-      'How many video views came from new content versus old content?',
-      'Show video views for content released within the last 90 days.',
-      'Show video views for content released within the last 45 days.',
-      'Show video views for content released within the last 15 days.',
-      'Compare views between new content and older content.',
+      // 'How many video views came from new content versus old content?',
+      // 'Show video views for content released within the last 90 days.',
+      // 'Show video views for content released within the last 45 days.',
+      // 'Show video views for content released within the last 15 days.',
+      // 'Compare views between new content and older content.',
       'Which trailers generated the highest video views last month?',
-      'Show the Top 5 trailers based on video views.',
-      'Which shows have high MAU but relatively low watch time per viewer?',
-      'Which content categories generate high MAV but comparatively lower watch time?',
-      'Which month shows growth across MAU, MAV, video views, and watch time?',
-      'Which shows drive the highest engagement per viewer?',
-      'Which segment (SVOD or AVOD) shows stronger watch time per viewer trends?'
+      'Show the Top 5 trailers based on video views.'
+      // 'Which shows have high MAU but relatively low watch time per viewer?',
+      // 'Which content categories generate high MAV but comparatively lower watch time?',
+      // 'Which month shows growth across MAU, MAV, video views, and watch time?',
+      // 'Which shows drive the highest engagement per viewer?',
+      // 'Which segment (SVOD or AVOD) shows stronger watch time per viewer trends?'
     ]
 
     class PerciBot extends HTMLElement {
